@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     Card,
     CardContent,
@@ -21,7 +21,15 @@ export default function Login() {
         password: ""
     });
 
-    const { login } = useUser();
+    const { login, user } = useUser();
+
+
+    // console.log("first log", user)
+    useEffect(() => {
+
+        if (user) navigate('/')
+
+    }, []);
 
     // console.log("userUnfo", userInfo);
     const [loading, setLoading] = useState(false);
@@ -44,7 +52,7 @@ export default function Login() {
             console.log(data);
             toast.success("Successfully Loging");
             setLoading(false);
-            // navigate('/dashboard')
+            navigate('/')
             login(data, data.expiresIn);
 
         } catch (e) {

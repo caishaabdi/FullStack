@@ -13,6 +13,8 @@ import { Button } from "./ui/button";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "@/hooks/useUser";
+import { useEffect } from "react";
 
 export default function Register() {
     const [formData, setFormData] = useState({
@@ -24,6 +26,12 @@ export default function Register() {
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
+
+    // console.log("first log", user)
+    const { user } = useUser();
+    useEffect(() => {
+        if (user) navigate('/')
+    }, []);
 
     const handleInputChange = (event) => {
         setFormData({
