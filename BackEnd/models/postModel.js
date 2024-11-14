@@ -2,9 +2,7 @@ import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 
-
 const PostSchema = new Schema({
-
     title: {
         type: String,
         required: true,
@@ -15,12 +13,12 @@ const PostSchema = new Schema({
         validate: [value => value.length < 500, 'content should be up 500 ']
     },
     image: {
-        type: String,  //his will be store URL/path to the image
+        type: String,  // This will store the URL/path to the image
         default: null
     },
     author: {
-        type: Schema.Type.ObjectId,
-        ref: 'User',  //refrencing the User Model
+        type: Schema.Types.ObjectId, // Corrected here
+        ref: 'User',  // Referencing the User model
         required: true
     }
 });
