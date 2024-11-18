@@ -1,10 +1,12 @@
-import express from "express";
-import { createPost } from "../controller/postController.js"; // Fixed typo here
-import { authenticate } from "../middleware/authMiddleware.js";
-import upload from "../middleware/uploadCloudinary.js"; // Ensure the filename is correct
+import express from 'express';
+import { createPost } from '../controllers/postController.js';
+import { authenticate } from '../middleware/authMiddleware.js';
+import upload from '../middleware/uploadCloudinry.js';
 
-const router = express.Router();
 
-router.post('/create-post', authenticate, upload, createPost);
+const PostRouter = express.Router();
 
-export default router;
+// Route to create a post with authentication and file upload
+PostRouter.post('/create-Post', authenticate, upload.single('image'), createPost);
+
+export default PostRouter;
